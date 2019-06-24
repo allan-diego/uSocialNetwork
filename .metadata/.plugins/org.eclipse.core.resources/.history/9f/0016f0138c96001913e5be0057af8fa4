@@ -1,0 +1,5 @@
+package br.edu.ifpe.igarassu.ipi.poo.user;
+
+public class DAOUserArrayList {
+
+}

@@ -1,0 +1,81 @@
+/*
+ *
+ * Instituto Federal de Educação, Ciência e Tecnologia - IFPE
+ * Curso: Informática para Internet
+ * Disciplina: Programação Orientada a Objetos
+ * Professor: Allan Lima - allan.lima@igarassu.ifpe.edu.br
+ * 
+ * Código de Domínio Público, sinta-se livre para usá-lo, modificá-lo e redistribuí-lo.
+ *
+ */
+
+package br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.user;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+import java.security.Principal;
+import java.util.List;
+import java.util.Map;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.sun.net.httpserver.HttpContext;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+
+import br.edu.ifpe.igarassu.ipi.poo.usn.data.access.arraylist.ArrayListDAO;
+import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.User;
+import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.UserSocialNetworkFacade;
+import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.AbstractHandler;
+
+/**
+*
+* Handles a request to get an user by its id.
+* 
+* @author Allan Diego Silva Lima - allan.lima@igarassu.ifpe.edu.br
+*
+*/
+public class GetUserByIdHandler extends AbstractHandler {
+
+	/**
+	 * 
+	 * Initializes its attributes
+	 * 
+	 * @param facade the facade of the system, containing the methods necessary to
+	 *               the operation handled by this class
+	 */
+	public GetUserByIdHandler(UserSocialNetworkFacade facade) {
+		super(facade);
+	}
+
+	/**
+	 * 
+	 * Handles a request to add an user.
+	 * 
+	 * @param exchange the object containing the metadata of the resquest
+	 * 
+	 */
+	@Override
+	public void handle(HttpExchange exchange) throws IOException {
+		ServerUtils.printRequestInfo(exchange);
+
+		try {
+			String[] path = exchange.getRequestURI().getPath().split("/");
+
+			System.out.println(path[3]);
+
+			String response = getMapper().writeValueAsString(getFacade().searchUserById(Integer.parseInt(path[3])));
+			System.out.println(response);
+			exchange.sendResponseHeaders(200, response.length());
+			OutputStream os = exchange.getResponseBody();
+			os.write(response.getBytes());
+			os.close();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}

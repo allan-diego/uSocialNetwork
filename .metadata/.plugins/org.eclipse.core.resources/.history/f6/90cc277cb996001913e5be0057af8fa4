@@ -1,0 +1,32 @@
+/*
+ *
+ * Instituto Federal de Educação, Ciência e Tecnologia - IFPE
+ * Curso: Informática para Internet
+ * Disciplina: Programação Orientada a Objetos
+ * Professor: Allan Lima - allan.lima@igarassu.ifpe.edu.br
+ * 
+ * Código de Domínio Público, sinta-se livre para usá-lo, modificá-lo e redistribuí-lo.
+ *
+ */
+
+package br.edu.ifpe.igarassu.ipi.poo;
+
+public class Entity {
+	
+	private long id;
+	
+	public Entity(long id) {
+		super();
+		this.setId(id);
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+	
+	
+}

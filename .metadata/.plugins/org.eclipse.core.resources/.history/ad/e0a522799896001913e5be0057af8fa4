@@ -1,0 +1,41 @@
+package br.edu.ifpe.igarassu.ipi.poo.model.controller.user;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Map;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.sun.net.httpserver.HttpExchange;
+
+import br.edu.ifpe.igarassu.ipi.poo.model.controller.AbstractHandler;
+import br.edu.ifpe.igarassu.ipi.poo.model.controller.ServerUtils;
+import br.edu.ifpe.igarassu.ipi.poo.model.controller.SocialNetworkFacade;
+import br.edu.ifpe.igarassu.ipi.poo.user.User;
+
+public class RemoveUserByIdHandler extends AbstractHandler {
+
+	public RemoveUserByIdHandler(SocialNetworkFacade facade) {
+		super(facade);
+	}
+
+	@Override
+	public void handle(HttpExchange exchange) throws IOException {
+		ServerUtils.printRequestInfo(exchange);
+
+		try {
+			String[] path = exchange.getRequestURI().getPath().split("/");
+
+			System.out.println(path[3]);
+
+			String response = getMapper().writeValueAsString(getFacade().searchUserById(Integer.parseInt(path[3])));
+			System.out.println(response);
+			exchange.sendResponseHeaders(200, response.length());
+			OutputStream os = exchange.getResponseBody();
+			os.write(response.getBytes());
+			os.close();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

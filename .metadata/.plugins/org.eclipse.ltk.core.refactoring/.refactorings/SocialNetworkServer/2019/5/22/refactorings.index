@@ -1,0 +1,11 @@
+1559161965730	Rename type 'RepositórioPostagemArrayList'
+1559162039513	Rename local variable 'postagem'
+1559162209767	Rename field 'postagens'
+1559231855753	Move compilation unit
+1559231926832	Delete element
+1559231962285	Rename package 'br.edu.ifpe.igarassu.ipi.poo.modelo.postagem'
+1559231973154	Move compilation unit
+1559231980528	Rename package 'br.edu.ifpe.igarassu.ipi.poo.modelo.usuario'
+1559231989838	Move compilation unit
+1559231992409	Delete element
+1559232005019	Rename local variable 'postagem'

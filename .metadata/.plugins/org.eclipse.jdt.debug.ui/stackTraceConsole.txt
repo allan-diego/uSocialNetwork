@@ -1,0 +1,10 @@
+			try {
+				String response = mapper.writeValueAsString(respositorioUsuarios.buscarPorId(1));
+				System.out.println(response);
+				t.sendResponseHeaders(200, response.length());
+				OutputStream os = t.getResponseBody();
+				os.write(response.getBytes());
+				os.close();
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}

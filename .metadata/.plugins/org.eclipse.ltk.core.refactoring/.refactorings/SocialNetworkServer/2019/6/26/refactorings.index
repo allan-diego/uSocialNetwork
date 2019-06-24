@@ -1,0 +1,64 @@
+1561386684358	Encapsulate field 'elements'
+1561386732902	Rename local variable 'elemento'
+1561386744545	Rename local variable 'elementRo'
+1561387022063	Rename method 'size'
+1561387032348	Rename method 'getElements'
+1561387089626	Rename type 'SocinalNetworkFacade'
+1561387148934	Rename method 'populate'
+1561387477152	Rename method 'numberofUsers'
+1561390092048	Rename local variable 'handler'
+1561391192705	Convert local variable 'mapper' to field
+1561391249557	Pull up 'mapper' to 'AbstractHandler'
+1561391268933	Encapsulate field 'mapper'
+1561391562245	Move compilation units
+1561391569771	Move compilation unit
+1561392097360	Rename local variable 'parseInt'
+1561392131550	Rename method 'remove'
+1561392312951	Extract local variable 'parameter'
+1561392419580	Rename package 'br.edu.ifpe.igarassu.ipi.poo.model.controller.serve'
+1561392425447	Copy package
+1561392433496	Delete element
+1561392452621	Move compilation units
+1561392456803	Delete element
+1561392492886	Move compilation unit
+1561392498780	Move compilation unit
+1561392503286	Move compilation unit
+1561392508023	Move compilation unit
+1561392584283	Rename type 'Server'
+1561392668175	Delete element
+1561405972874	Rename package 'br.edu.ifpe.igarassu.ipi.poo.dad'
+1561405978423	Move compilation unit
+1561405991826	Move compilation unit
+1561406004383	Rename package 'br.edu.ifpe.igarassu.ipi.poo'
+1561406037633	Rename package 'br.edu.ifpe.igarassu.ipi.poo.da.arraylist'
+1561406074028	Rename package 'br.edu.ifpe.igarassu.ipi.poo.data.arraylist'
+1561406086271	Rename package 'br.edu.ifpe.igarassu.ipi.poo.usn'
+1561406116719	Rename package 'br.edu.ifpe.igarassu.ipi.poo.user'
+1561406139011	Rename package 'br.edu.ifpe.igarassu.ipi.poo'
+1561406146303	Rename package 'br.edu.ifpe.igarassu.ipi.poo.data'
+1561406172358	Rename package 'br.edu.ifpe.igarassu.ipi.poo.data.access.arraylist'
+1561406183307	Rename package 'br.edu.ifpe.igarassu.ipi.poo.data.entity.user'
+1561406188748	Rename package 'br.edu.ifpe.igarassu.ipi.poo.data.entity'
+1561406204675	Rename package 'br.edu.ifpe.igarassu.ipi.poo.model.controller.server.user'
+1561406213365	Rename package 'br.edu.ifpe.igarassu.ipi.poo.model.controller.server'
+1561406222577	Rename package 'br.edu.ifpe.igarassu.ipi.poo.model.controller'
+1561406231533	Rename package 'br.edu.ifpe.igarassu.ipi.poo.test'
+1561407260613	Rename type 'DAOArrayList'
+1561407269345	Rename type 'DAOUserArrayList'
+1561408072769	Rename local variable 'nome'
+1561408078099	Rename local variable 'senha'
+1561408197435	Rename local variable 'senha'
+1561408201440	Rename local variable 'nome'
+1561409476252	Extract interface 'UserSocialNetworkFacade'
+1561409675152	Rename local variable 't'
+1561410236084	Delete element
+1561410262633	Extract interface 'UserSocialNetworkFacade'
+1561410720461	Move compilation unit
+1561410768219	Delete element
+1561410811469	Move compilation unit
+1561411171591	Rename local variable 't'
+1561411175109	Rename local variable 'exchnge'
+1561411273150	Move compilation unit
+1561411284821	Move compilation unit
+1561411424892	Rename local variable 'element'
+1561411432171	Rename local variable 'element'

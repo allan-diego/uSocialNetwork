@@ -1,0 +1,53 @@
+package br.edu.ifpe.igarassu.ipi.poo.model.controller;
+
+import java.util.ArrayList;
+
+import br.edu.ifpe.igarassu.ipi.poo.DAOArrayList;
+import br.edu.ifpe.igarassu.ipi.poo.user.DAOUserArrayList;
+import br.edu.ifpe.igarassu.ipi.poo.user.User;
+
+public class SocialNetworkFacade {
+	
+	private DAOArrayList<User> DAOUsers = new DAOUserArrayList();
+
+	/**
+	 * @param element
+	 * @see br.edu.ifpe.igarassu.ipi.poo.DAOArrayList#add(br.edu.ifpe.igarassu.ipi.poo.Entity)
+	 */
+	public void addUser(User element) {
+		DAOUsers.add(element);
+	}
+
+	/**
+	 * @param id
+	 * @return
+	 * @see br.edu.ifpe.igarassu.ipi.poo.DAOArrayList#searchById(long)
+	 */
+	public User searchUserById(long id) {
+		return DAOUsers.searchById(id);
+	}
+
+	/**
+	 * @return
+	 * @see br.edu.ifpe.igarassu.ipi.poo.DAOArrayList#size()
+	 */
+	public int numberOfUsers() {
+		return DAOUsers.size();
+	}
+
+	/**
+	 * @return
+	 * @see br.edu.ifpe.igarassu.ipi.poo.DAOArrayList#getElements()
+	 */
+	public ArrayList<User> listUsers() {
+		return DAOUsers.getElements();
+	}
+
+	public void searchUserByName(String name) {
+		return DAOUsers.searchByName(name);
+		
+	}
+	
+	
+
+}

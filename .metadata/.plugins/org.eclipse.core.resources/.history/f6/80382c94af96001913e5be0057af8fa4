@@ -1,0 +1,23 @@
+package br.edu.ifpe.igarassu.ipi.poo.user;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import br.edu.ifpe.igarassu.ipi.poo.DAOArrayList;
+
+public class DAOUserArrayList extends DAOArrayList<User> {
+	
+	public List<User> searchByName(String name) {
+		List<User> result = new ArrayList<User>();
+		for (Iterator<User> iterator = this.getElements().iterator(); iterator.hasNext();) {
+			User element = iterator.next();
+			if (element.getName().toLowerCase().contains(name.toLowerCase())) {
+				result.add(element);
+			}
+		}
+		
+		return result;
+	}
+
+}

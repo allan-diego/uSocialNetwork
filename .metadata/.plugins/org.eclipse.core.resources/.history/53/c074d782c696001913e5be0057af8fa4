@@ -1,0 +1,82 @@
+/*
+ *
+ * Instituto Federal de Educação, Ciência e Tecnologia - IFPE
+ * Curso: Informática para Internet
+ * Disciplina: Programação Orientada a Objetos
+ * Professor: Allan Lima - allan.lima@igarassu.ifpe.edu.br
+ * 
+ * Código de Domínio Público, sinta-se livre para usá-lo, modificá-lo e redistribuí-lo.
+ *
+ */
+
+package br.edu.ifpe.igarassu.ipi.poo.usn.model.controller;
+
+import java.util.List;
+
+import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.User;
+import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.UserArrayListDAO;
+
+public class SocialNetworkFacade implements UserSocialNetworkFacade {
+	
+	// the collection of users
+	private UserArrayListDAO DAOUsers = new UserArrayListDAO();
+
+	/**
+	 * 
+	 * Add an user to the collection
+	 * 
+	 * @param user the user to be added
+	 */
+	@Override
+	public void addUser(User user) {
+		this.DAOUsers.add(user);
+	}
+
+	/**
+	 * @param id
+	 * @return
+	 * @see br.edu.ifpe.igarassu.ipi.poo.usn.data.access.arraylist.ArrayListDAO#searchById(long)
+	 */
+	@Override
+	public User searchUserById(long id) {
+		return this.DAOUsers.searchById(id);
+	}
+
+	/**
+	 * @return
+	 * @see br.edu.ifpe.igarassu.ipi.poo.usn.data.access.arraylist.ArrayListDAO#size()
+	 */
+	@Override
+	public int numberOfUsers() {
+		return this.DAOUsers.size();
+	}
+
+	/**
+	 * @return
+	 * @see br.edu.ifpe.igarassu.ipi.poo.usn.data.access.arraylist.ArrayListDAO#getElements()
+	 */
+	@Override
+	public List<User> listUsers() {
+		return this.DAOUsers.getElements();
+	}
+
+	/**
+	 * @return
+	 * @see br.edu.ifpe.igarassu.ipi.poo.usn.data.access.arraylist.ArrayListDAO#searchByName()
+	 */
+	@Override
+	public List<User> searchUserByName(String name) {
+		return this.DAOUsers.searchByName(name);
+	}
+
+	/**
+	 * @return
+	 * @see br.edu.ifpe.igarassu.ipi.poo.usn.data.access.arraylist.ArrayListDAO#removeById()
+	 */
+	@Override
+	public void removeUserById(int id) {
+		this.DAOUsers.removeById(id);
+		
+	}
+
+}

@@ -1,0 +1,49 @@
+package br.edu.ifpe.igarassu.ipi.poo.model.controller;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+import java.security.Principal;
+import java.util.List;
+import java.util.Map;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.net.httpserver.HttpContext;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+
+import br.edu.ifpe.igarassu.ipi.poo.user.User;
+
+public class SearchByNameUserHandler extends AbstractHandler {
+
+	public SearchByNameUserHandler(SocialNetworkFacade facade) {
+		super(facade);
+	}
+
+	@Override
+	public void handle(HttpExchange exchange) throws IOException {
+		try {
+			printRequestInfo(exchange);
+
+			Map<String, Object> parameters = parsePostParameters(exchange);
+
+			String name = parameters.get("name").toString();
+			int id = super.getFacade().numberOfUsers();
+			System.out.println("search user: " + name);
+			super.getFacade().seach(newUser);
+
+			String response = "add user";
+			exchange.sendResponseHeaders(200, response.length());
+			OutputStream os = exchange.getResponseBody();
+			os.write(response.getBytes());
+			os.close();
+		
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+
+}

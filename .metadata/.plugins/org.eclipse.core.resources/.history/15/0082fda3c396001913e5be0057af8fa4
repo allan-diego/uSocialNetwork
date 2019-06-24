@@ -1,0 +1,37 @@
+/*
+ *
+ * Instituto Federal de Educação, Ciência e Tecnologia - IFPE
+ * Curso: Informática para Internet
+ * Disciplina: Programação Orientada a Objetos
+ * Professor: Allan Lima - allan.lima@igarassu.ifpe.edu.br
+ * 
+ * Código de Domínio Público, sinta-se livre para usá-lo, modificá-lo e redistribuí-lo.
+ *
+ */
+
+package br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server;
+
+import java.io.IOException;
+import java.io.OutputStream;
+
+import com.sun.net.httpserver.HttpExchange;
+
+import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.SocialNetworkFacade;
+
+public class RootHandler extends AbstractHandler {
+
+	public RootHandler(SocialNetworkFacade facade) {
+		super(facade);
+	}
+
+	@Override
+	public void handle(HttpExchange t) throws IOException {
+		System.out.println("root");
+		String response = "This is the root";
+        t.sendResponseHeaders(200, response.length());
+        OutputStream os = t.getResponseBody();
+        os.write(response.getBytes());
+        os.close();
+	}
+
+}

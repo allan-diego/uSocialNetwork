@@ -1,0 +1,52 @@
+/*
+ *
+ * Instituto Federal de Educação, Ciência e Tecnologia - IFPE
+ * Curso: Informática para Internet
+ * Disciplina: Programação Orientada a Objetos
+ * Professor: Allan Lima - allan.lima@igarassu.ifpe.edu.br
+ * 
+ * Código de Domínio Público, sinta-se livre para usá-lo, modificá-lo e redistribuí-lo.
+ *
+ */
+
+package br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user;
+
+import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.Entity;
+
+/**
+ * 
+ * Represents an user on the social network 
+ * 
+ * @author Allan Diego Silva Lima - allan.lima@igarassu.ifpe.edu.br
+ *
+ */
+public class User extends Entity {
+	// the name of the user
+	private String name;
+	
+	// the passord of the user
+	private String password;
+	
+	public User(long id, String nome, String senha) {
+		super(id);
+		this.name = nome;
+		this.password = senha;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String nome) {
+		this.name = nome;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String senha) {
+		this.password = senha;
+	}
+
+}

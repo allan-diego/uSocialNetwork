@@ -1,0 +1,52 @@
+package br.edu.ifpe.igarassu.ipi.poo.model.controller.server;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.List;
+import java.util.Map;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.net.httpserver.HttpExchange;
+
+import br.edu.ifpe.igarassu.ipi.poo.user.User;
+
+public class ListUserHandler extends AbstractHandler {
+
+	@Override
+	public void handle(HttpExchange exchange) throws IOException {
+		try {
+			printRequestInfo(exchange);
+
+			Map<String, Object> parameters = parsePostParameters(exchange);
+
+			Object parameter = parameters.get("name");
+			String name = "";
+			
+			if (parameter != null) {
+				name = parameter.toString();
+			}
+			
+			System.out.println("search user: " + name);
+			List<User> users = super.getFacade().searchUserByName(name);
+
+			ObjectMapper mapper = new ObjectMapper();
+
+			try {
+				String response = mapper.writeValueAsString(users);
+				System.out.println(response);
+				exchange.sendResponseHeaders(200, response.length());
+				OutputStream os = exchange.getResponseBody();
+				os.write(response.getBytes());
+				os.close();
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+		
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+	}
+
+}

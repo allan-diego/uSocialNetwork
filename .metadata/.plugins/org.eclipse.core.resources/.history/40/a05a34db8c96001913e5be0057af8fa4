@@ -1,0 +1,48 @@
+package br.edu.ifpe.igarassu.ipi.poo;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class DAOArrayList<T extends Entity> {
+	
+	private ArrayList<T> elements;
+	
+	public DAOArrayList() {
+		this.setElements(new ArrayList<T>());
+	}
+	
+	public void add(T element) {
+		
+		if (element == null) {
+			throw new NullPointerException();
+		}
+		
+		
+		this.getElements().add(element);
+	}
+	
+	
+	public T searchById(long id) {
+		for (Iterator<T> iterator = this.getElements().iterator(); iterator.hasNext();) {
+			T elemento = iterator.next();
+			if (elemento.getId() == id) {
+				return elemento;
+			}
+		}
+		
+		return null;
+	}
+	
+	public int size() {
+		return this.getElements().size();
+	}
+
+	public ArrayList<T> getElements() {
+		return elements;
+	}
+
+	private void setElements(ArrayList<T> elements) {
+		this.elements = elements;
+	}
+	
+}

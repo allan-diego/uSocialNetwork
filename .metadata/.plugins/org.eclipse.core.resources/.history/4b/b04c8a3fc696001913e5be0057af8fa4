@@ -1,0 +1,50 @@
+package br.edu.ifpe.igarassu.ipi.poo.usn.model.controller;
+
+import java.util.List;
+
+import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.User;
+
+public interface UserSocialNetworkFacade {
+
+	/**
+	 * @param element
+	 * @see br.edu.ifpe.igarassu.ipi.poo.usn.data.access.arraylist.ArrayListDAO#add(br.edu.ifpe.igarassu.ipi.poo.usn.Entity)
+	 */
+	public void addUser(User element);
+
+	/**
+	 * @param id
+	 * @return
+	 * @see br.edu.ifpe.igarassu.ipi.poo.usn.data.access.arraylist.ArrayListDAO#searchById(long)
+	 */
+	public User searchUserById(long id);
+
+	/**
+	 * @return
+	 * @see br.edu.ifpe.igarassu.ipi.poo.usn.data.access.arraylist.ArrayListDAO#size()
+	 */
+	public int numberOfUsers();
+
+	/**
+	 * 
+	 * Returns the elements stored by this object as a List
+	 * 
+	 * @return the elements stored by this object as a List
+	 * 
+	 * @see br.edu.ifpe.igarassu.ipi.poo.usn.data.access.arraylist.ArrayListDAO#getElements()
+	 */
+	public List<User> listUsers();
+
+	/**
+	 * @return
+	 * @see br.edu.ifpe.igarassu.ipi.poo.usn.data.access.arraylist.ArrayListDAO#searchByName()
+	 */
+	public List<User> searchUserByName(String name);
+
+	/**
+	 * @return
+	 * @see br.edu.ifpe.igarassu.ipi.poo.usn.data.access.arraylist.ArrayListDAO#removeById()
+	 */
+	public void removeUserById(int id);
+
+}

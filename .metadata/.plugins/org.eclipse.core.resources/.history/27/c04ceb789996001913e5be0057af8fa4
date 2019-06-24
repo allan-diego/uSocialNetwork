@@ -1,0 +1,59 @@
+package br.edu.ifpe.igarassu.ipi.poo.model.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import br.edu.ifpe.igarassu.ipi.poo.user.DAOUserArrayList;
+import br.edu.ifpe.igarassu.ipi.poo.user.User;
+
+public class SocialNetworkFacade {
+	
+	private DAOUserArrayList DAOUsers = new DAOUserArrayList();
+
+	/**
+	 * @param element
+	 * @see br.edu.ifpe.igarassu.ipi.poo.DAOArrayList#add(br.edu.ifpe.igarassu.ipi.poo.Entity)
+	 */
+	public void addUser(User element) {
+		this.DAOUsers.add(element);
+	}
+
+	/**
+	 * @param id
+	 * @return
+	 * @see br.edu.ifpe.igarassu.ipi.poo.DAOArrayList#searchById(long)
+	 */
+	public User searchUserById(long id) {
+		return this.DAOUsers.searchById(id);
+	}
+
+	/**
+	 * @return
+	 * @see br.edu.ifpe.igarassu.ipi.poo.DAOArrayList#size()
+	 */
+	public int numberOfUsers() {
+		return this.DAOUsers.size();
+	}
+
+	/**
+	 * @return
+	 * @see br.edu.ifpe.igarassu.ipi.poo.DAOArrayList#getElements()
+	 */
+	public List<User> listUsers() {
+		return this.DAOUsers.getElements();
+	}
+
+	/**
+	 * @return
+	 * @see br.edu.ifpe.igarassu.ipi.poo.DAOArrayList#searchUserByName()
+	 */
+	public List<User> searchUserByName(String name) {
+		return this.DAOUsers.searchByName(name);
+	}
+
+	public void removeUserById(int id) {
+		this.DAOUsers.removeById(id);
+		
+	}
+
+}

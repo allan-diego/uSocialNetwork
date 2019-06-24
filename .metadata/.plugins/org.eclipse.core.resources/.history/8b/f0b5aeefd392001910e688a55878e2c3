@@ -1,0 +1,40 @@
+package br.edu.ifpe.igarassu.ipi.poo.model.controller;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Map;
+
+import com.sun.net.httpserver.HttpExchange;
+
+import br.edu.ifpe.igarassu.ipi.poo.user.User;
+
+public class AddUserHandler extends AbstractHandler {
+
+	@Override
+	public void handle(HttpExchange handler) throws IOException {
+		try {
+		printRequestInfo(handler);
+ 
+		Map<String, Object> parameters = parsePostParameters(handler);
+		
+		
+		String name = parameters.get("name").toString();
+		String password = parameters.get("password").toString();
+		int id = super.getDAOUsers().size();
+		System.out.println("add user " + id + "|" + name + " | " + password);
+		User newUser = new User(id, name, password);
+		super.getDAOUsers().add(newUser);
+
+		String response = "add user";
+		handler.sendResponseHeaders(200, response.length());
+		OutputStream os = handler.getResponseBody();
+		os.write(response.getBytes());
+		os.close();
+		
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+	}
+
+}

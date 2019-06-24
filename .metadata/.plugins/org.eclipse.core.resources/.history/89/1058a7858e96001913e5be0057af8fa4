@@ -1,0 +1,37 @@
+package br.edu.ifpe.igarassu.ipi.poo.model.controller;
+
+import java.net.InetSocketAddress;
+
+import com.sun.net.httpserver.HttpServer;
+
+import br.edu.ifpe.igarassu.ipi.poo.DAOArrayList;
+import br.edu.ifpe.igarassu.ipi.poo.user.User;
+
+public class Server {
+	public static void main(String[] args) throws Exception {
+		SocialNetworkFacade facade = new SocialNetworkFacade();
+		
+		pupulateUsers(facade);
+		
+        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
+
+        server.createContext("/", new RootHandler(facade));
+        server.createContext("/user/get", new GetUserByIdHandler(facade));
+        server.createContext("/user/add", new AddUserHandler(facade));
+        server.createContext("/user/search", new SearchByNameUserHandler(facade));
+        server.setExecutor(null);
+        
+        server.start();
+    }
+	
+	
+	private static void populateUsers(SocialNetworkFacade facade) {
+		facade.addUser(new User(0, "Carla", "312"));
+		facade.addUser(new User(1, "Carlos", "541"));
+		facade.addUser(new User(2, "Marcos", "451"));
+		facade.addUser(new User(3, "Joao", "123"));
+		facade.addUser(new User(3, "Joana", "171"));
+	}
+	
+	
+}

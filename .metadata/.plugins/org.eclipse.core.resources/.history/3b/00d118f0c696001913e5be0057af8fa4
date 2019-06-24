@@ -1,0 +1,93 @@
+/*
+ *
+ * Instituto Federal de Educação, Ciência e Tecnologia - IFPE
+ * Curso: Informática para Internet
+ * Disciplina: Programação Orientada a Objetos
+ * Professor: Allan Lima - allan.lima@igarassu.ifpe.edu.br
+ * 
+ * Código de Domínio Público, sinta-se livre para usá-lo, modificá-lo e redistribuí-lo.
+ *
+ */
+
+package br.edu.ifpe.igarassu.ipi.poo.usn.model.controller;
+
+import java.util.List;
+
+import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.User;
+import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.UserArrayListDAO;
+
+public class SocialNetworkFacade implements UserSocialNetworkFacade {
+	
+	// the collection of users
+	private UserArrayListDAO DAOUsers = new UserArrayListDAO();
+
+	/**
+	 * 
+	 * Add an user to the collection
+	 * 
+	 * @param user the user to be added
+	 */
+	@Override
+	public void addUser(User user) {
+		this.DAOUsers.add(user);
+	}
+
+	/**
+	 * 
+	 * Searches for an user on
+	 * 
+	 * @param id the id of the user to be searched 
+	 * 
+	 * @return the user found or null if the user is not present on the collection 
+	 */
+	@Override
+	public User searchUserById(long id) {
+		return this.DAOUsers.searchById(id);
+	}
+
+	/**
+	 * 
+	 * Returns the number of users stored
+	 * 
+	 * @return the number of users stored
+	 */
+	@Override
+	public int numberOfUsers() {
+		return this.DAOUsers.size();
+	}
+
+	/**
+	 * 
+	 * Returns the users stored as a List
+	 * 
+	 * @return the elements stored as a List
+	 */
+	@Override
+	public List<User> listUsers() {
+		return this.DAOUsers.getElements();
+	}
+
+	/**
+	 * 
+	 * Searches for an user
+	 * 
+	 * @param id the id of the element to be searched 
+	 * 
+	 * @return the element found or null if the element is not present on the collection 
+	 */
+	@Override
+	public List<User> searchUserByName(String name) {
+		return this.DAOUsers.searchByName(name);
+	}
+
+	/**
+	 * @return
+	 * @see br.edu.ifpe.igarassu.ipi.poo.usn.data.access.arraylist.ArrayListDAO#removeById()
+	 */
+	@Override
+	public void removeUserById(int id) {
+		this.DAOUsers.removeById(id);
+		
+	}
+
+}

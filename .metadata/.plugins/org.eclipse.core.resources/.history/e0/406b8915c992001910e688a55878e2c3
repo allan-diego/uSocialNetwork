@@ -1,0 +1,31 @@
+package br.edu.ifpe.igarassu.ipi.poo.user;
+
+import br.edu.ifpe.igarassu.ipi.poo.Entidade;
+
+public class User extends Entidade {
+	private String name;
+	private String password;
+	
+	public User(long id, String nome, String senha) {
+		super(id);
+		this.name = nome;
+		this.password = senha;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String nome) {
+		this.name = nome;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String senha) {
+		this.password = senha;
+	}
+
+}

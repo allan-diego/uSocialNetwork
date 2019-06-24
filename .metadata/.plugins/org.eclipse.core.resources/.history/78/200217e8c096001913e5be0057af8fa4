@@ -1,0 +1,86 @@
+/*
+ *
+ * Instituto Federal de Educação, Ciência e Tecnologia - IFPE
+ * Curso: Informática para Internet
+ * Disciplina: Programação Orientada a Objetos
+ * Professor: Allan Lima - allan.lima@igarassu.ifpe.edu.br
+ * 
+ * Código de Domínio Público, sinta-se livre para usá-lo, modificá-lo e redistribuí-lo.
+ *
+ */
+
+package br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.user;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Map;
+
+import com.sun.net.httpserver.HttpExchange;
+
+import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.User;
+import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.SocialNetworkFacade;
+import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.AbstractHandler;
+
+/**
+ *
+ * Handles a request to add an user.
+ * 
+ * @author Allan Diego Silva Lima - allan.lima@igarassu.ifpe.edu.br
+ *
+ */
+public class AddUserHandler extends AbstractHandler {
+
+	/**
+	 * 
+	 * Initializes its attributes
+	 * 
+	 * @param facade the facade of the system, containing the methods necessary to the operation handled by this class 
+	 */
+	public AddUserHandler(SocialNetworkFacade facade) {
+		super(facade);
+	}
+
+	/**
+	 * 
+	 * Handles a request to add an user.
+	 * 
+	 * @param exchange the object containing the metadata of the resquest
+	 * 
+	 */
+	@Override
+	public void handle(HttpExchange exchange) throws IOException {
+		try {
+			printRequestInfo(exchange);
+
+			// get the post metadata
+			Map<String, Object> parameters = parsePostParameters(exchange);
+
+			// gets the data nedded to crate a new user
+			String name = parameters.get("name").toString();
+			String password = parameters.get("password").toString();
+			int id = super.getFacade().numberOfUsers();
+			
+			System.out.println("add user " + id + " | " + name + " | " + password);
+			
+			User newUser = new User(id, name, password);
+			
+			// TO handdle erros
+			
+			// performs the add
+			super.getFacade().addUser(newUser);
+
+			// TODO change the response to a JSON Object
+			String response = "Sucess";
+			
+			exchange.sendResponseHeaders(200, response.length());
+			OutputStream os = exchange.getResponseBody();
+			os.write(response.getBytes());
+			os.close();
+		
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+	}
+
+}

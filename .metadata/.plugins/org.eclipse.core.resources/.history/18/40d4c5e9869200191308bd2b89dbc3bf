@@ -1,0 +1,63 @@
+package br.edu.ifpe.igarassu.ipi.poo.model.controlador;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
+
+import br.edu.ifpe.igarassu.ipi.poo.RepositorioArrayList;
+import br.edu.ifpe.igarassu.ipi.poo.usuario.Usuario;
+
+public class Servidor {
+	
+    public static void main(String[] args) throws Exception {
+    	RepositorioArrayList<Usuario> respositorioUsuarios = new RepositorioArrayList<Usuario>();
+   		popularRepositorio(respositorioUsuarios);
+    	
+        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
+        server.createContext("/id", new MyHandler(respositorioUsuarios));
+        server.setExecutor(null); // creates a default executor
+        server.start();
+    }
+    
+    private static void popularRepositorio(RepositorioArrayList<Usuario> respositorioUsuarios) {
+    	respositorioUsuarios.adicionar(new Usuario(0, "Carla", "312"));
+    	respositorioUsuarios.adicionar(new Usuario(1, "Carlos", "541"));
+    	respositorioUsuarios.adicionar(new Usuario(2, "Marcos", "451"));
+    	respositorioUsuarios.adicionar(new Usuario(3, "Joao", "123"));
+    	respositorioUsuarios.adicionar(new Usuario(3, "Joana", "171"));
+    }
+
+    static class MyHandler implements HttpHandler {
+    	RepositorioArrayList<Usuario> respositorioUsuarios = new RepositorioArrayList<Usuario>();
+    	
+        public MyHandler(RepositorioArrayList<Usuario> respositorioUsuarios) {
+        	this.respositorioUsuarios = respositorioUsuarios;
+		}
+
+		@Override
+        public void handle(HttpExchange t) throws IOException {
+			
+			Map<String,Object> attributes = t.getAttributes();
+
+			ObjectMapper mapper = new ObjectMapper();
+
+			try {
+				String response = mapper.writeValueAsString(respositorioUsuarios.buscarPorId(1));
+				System.out.println(response);
+				t.sendResponseHeaders(200, response.length());
+				OutputStream os = t.getResponseBody();
+				os.write(response.getBytes());
+				os.close();
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+        }
+    }
+
+}

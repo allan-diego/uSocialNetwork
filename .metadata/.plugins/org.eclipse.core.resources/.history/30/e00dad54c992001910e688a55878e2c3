@@ -1,0 +1,107 @@
+package br.edu.ifpe.igarassu.ipi.poo.model.controller;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+import java.security.Principal;
+import java.util.List;
+import java.util.Map;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.net.httpserver.HttpContext;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
+
+import br.edu.ifpe.igarassu.ipi.poo.DAOArrayList;
+import br.edu.ifpe.igarassu.ipi.poo.user.User;
+
+public class Server {
+	public static void main(String[] args) throws Exception {
+        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
+        server.createContext("/", new MyHandle2r());
+        server.createContext("/user/add", new AddUserHandler());
+        server.createContext("/user/search", new MyHandler3());
+        server.createContext("/user/get", new MyHandler());
+        server.setExecutor(null); // creates a default executor
+        server.start();
+    }
+
+    static class MyHandler implements HttpHandler {
+    	DAOArrayList<User> respositorioUsuarios = new DAOArrayList<User>();
+    	
+        public MyHandler() {
+        	popularRepositorio(this.respositorioUsuarios);
+		}
+        
+        private static void popularRepositorio(DAOArrayList<User> respositorioUsuarios) {
+        	respositorioUsuarios.adicionar(new User(0, "Carla", "312"));
+        	respositorioUsuarios.adicionar(new User(1, "Carlos", "541"));
+        	respositorioUsuarios.adicionar(new User(2, "Marcos", "451"));
+        	respositorioUsuarios.adicionar(new User(3, "Joao", "123"));
+        	respositorioUsuarios.adicionar(new User(3, "Joana", "171"));
+        }
+    	
+        @Override
+        public void handle(HttpExchange t) throws IOException {
+        	printRequestInfo(t);
+
+			ObjectMapper mapper = new ObjectMapper();
+			
+			try {
+				/*String response = "This is the response";
+				t.sendResponseHeaders(200, response.length());
+				OutputStream os = t.getResponseBody();
+				os.write(response.getBytes());
+				os.close();*/
+				
+				String[] path = t.getRequestURI().getPath().split("/");
+				
+				System.out.println(path[3]);
+				
+				String response = mapper.writeValueAsString(respositorioUsuarios.buscarPorId(Integer.parseInt(path[3])));
+				System.out.println(response);
+				t.sendResponseHeaders(200, response.length());
+				OutputStream os = t.getResponseBody(); os.write(response.getBytes());
+				os.close();				
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+        	
+        }
+        
+        private static void printRequestInfo(HttpExchange exchange) throws MalformedURLException {
+        	System.out.println("-- request --");
+        	String requestedURL = "http://" + exchange.getRequestHeaders().getFirst("Host") + exchange.getRequestURI();
+            System.out.println(requestedURL);  
+            URL u = new URL(requestedURL);
+            System.out.println("Host: " + u.getHost());
+            System.out.println("Port: " + u.getPort());
+        	
+            System.out.println("-- headers --");
+            Map<String,List<String>> requestHeaders = exchange.getRequestHeaders();
+            requestHeaders.entrySet().forEach(System.out::println);
+
+            System.out.println("-- principle --");
+            Principal principal = exchange.getPrincipal();
+            System.out.println(principal);
+
+            System.out.println("-- HTTP method --");
+            String requestMethod = exchange.getRequestMethod();
+            System.out.println(requestMethod);
+
+            System.out.println("-- query --");
+            URI requestURI = exchange.getRequestURI();
+            String query = requestURI.getQuery();
+            System.out.println(query);
+            
+            System.out.println("-- context --");
+            HttpContext context = exchange.getHttpContext();
+            System.out.println(context.getPath());
+        }
+    }
+}

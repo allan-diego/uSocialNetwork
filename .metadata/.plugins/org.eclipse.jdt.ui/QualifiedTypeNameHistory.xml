@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="br.edu.ifpe.igarassu.ipi.poo.Usuario"/>
+<fullyQualifiedTypeName name="br.edu.ifpe.igarassu.ipi.poo.modelo.postagem.Entidade"/>
+<fullyQualifiedTypeName name="java.net.URL"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="br.edu.ifpe.igarassu.ipi.poo.user.DAOUserArrayList"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="br.edu.ifpe.igarassu.ipi.poo.model.controller.AbstractHandler"/>
+<fullyQualifiedTypeName name="javax.xml.ws.spi.http.HttpHandler"/>
+</qualifiedTypeNameHistroy>
