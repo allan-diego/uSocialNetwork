@@ -15,11 +15,20 @@ import java.util.List;
 
 import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.User;
 import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.UserArrayListDAO;
+import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.UserDAO;
 
+/**
+ *
+ * Facade of the Social Network, contains all methods of its functionalities for
+ * a standard user
+ * 
+ * @author Allan Diego Silva Lima - allan.lima@igarassu.ifpe.edu.br
+ *
+ */
 public class SocialNetworkFacade implements UserSocialNetworkFacade {
-	
+
 	// the collection of users
-	private UserArrayListDAO DAOUsers = new UserArrayListDAO();
+	private UserDAO UsersDAO = new UserArrayListDAO();
 
 	/**
 	 * 
@@ -29,20 +38,20 @@ public class SocialNetworkFacade implements UserSocialNetworkFacade {
 	 */
 	@Override
 	public void addUser(User user) {
-		this.DAOUsers.add(user);
+		this.UsersDAO.add(user);
 	}
 
 	/**
 	 * 
 	 * Searches for an user on
 	 * 
-	 * @param id the id of the user to be searched 
+	 * @param id the id of the user to be searched
 	 * 
-	 * @return the user found or null if the user is not present on the collection 
+	 * @return the user found or null if the user is not present on the collection
 	 */
 	@Override
 	public User searchUserById(long id) {
-		return this.DAOUsers.searchById(id);
+		return this.UsersDAO.searchById(id);
 	}
 
 	/**
@@ -53,7 +62,7 @@ public class SocialNetworkFacade implements UserSocialNetworkFacade {
 	 */
 	@Override
 	public int numberOfUsers() {
-		return this.DAOUsers.size();
+		return this.UsersDAO.size();
 	}
 
 	/**
@@ -64,7 +73,7 @@ public class SocialNetworkFacade implements UserSocialNetworkFacade {
 	 */
 	@Override
 	public List<User> listUsers() {
-		return this.DAOUsers.getElements();
+		return this.UsersDAO.list();
 	}
 
 	/**
@@ -73,13 +82,14 @@ public class SocialNetworkFacade implements UserSocialNetworkFacade {
 	 * 
 	 * @param name the name to be searched
 	 * 
-	 * @return a list of <code>Users</code> the contain the string <code>name</code> on their names, if there is no results on the search, the method will return an empty list.
+	 * @return a list of <code>Users</code> the contain the string <code>name</code>
+	 *         on their names, if there is no results on the search, the method will
+	 *         return an empty list.
 	 */
 	@Override
 	public List<User> searchUserByName(String name) {
-		return this.DAOUsers.searchByName(name);
+		return this.UsersDAO.searchByName(name);
 	}
-
 
 	/**
 	 * 
@@ -89,8 +99,8 @@ public class SocialNetworkFacade implements UserSocialNetworkFacade {
 	 */
 	@Override
 	public void removeUserById(int id) {
-		this.DAOUsers.removeById(id);
-		
+		this.UsersDAO.removeById(id);
+
 	}
 
 }

@@ -15,6 +15,13 @@ import java.util.List;
 
 import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.User;
 
+/**
+*
+* Facade of the Social Network, contains all methods of its functionalities for a standard user 
+* 
+* @author Allan Diego Silva Lima - allan.lima@igarassu.ifpe.edu.br
+*
+*/
 public interface UserSocialNetworkFacade {
 
 	/**

@@ -17,6 +17,7 @@ import java.io.OutputStream;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sun.net.httpserver.HttpExchange;
 
+import br.edu.ifpe.igarassu.ipi.poo.usn.data.entity.user.User;
 import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.UserSocialNetworkFacade;
 import br.edu.ifpe.igarassu.ipi.poo.usn.model.controller.server.AbstractHandler;
 
@@ -55,9 +56,11 @@ public class GetUserByIdHandler extends AbstractHandler {
 			String[] path = exchange.getRequestURI().getPath().split("/");
 
 			// TODO add error verifications
-			System.out.println(path[3]);
+			String userId = path[3];
+			System.out.println(userId);
 
-			String response = getMapper().writeValueAsString(getFacade().searchUserById(Integer.parseInt(path[3])));
+			User user = getFacade().searchUserById(Integer.parseInt(userId));
+			String response = getMapper().writeValueAsString(user);
 			System.out.println(response);
 			
 			exchange.sendResponseHeaders(200, response.length());
