@@ -62,3 +62,12 @@
 1561411284821	Move compilation unit
 1561411424892	Rename local variable 'element'
 1561411432171	Rename local variable 'element'
+1561466607118	Extract local variable 'user'
+1561466615303	Extract local variable 'userID'
+1561466628803	Rename local variable 'userID'
+1561467616209	Extract interface 'UserDAO'
+1561467718231	Rename local variable 'element'
+1561467734255	Rename local variable 'elements'
+1561467861141	Rename method 'getElements'
+1561467963940	Rename field 'DAOUsers'
+1561643239690	Delete element

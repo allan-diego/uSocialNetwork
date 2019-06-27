@@ -14,7 +14,7 @@
 		<item key="renameSubpackages" value="false"/>
 		<item key="updateQualifiedNames" value="false"/>
 		<item key="patterns" value="*"/>
-		<item key="updateTextualMatches" value="false"/>
+		<item key="updateTextualMatches" value="true"/>
 		<item key="updateSimilarElements" value="false"/>
 		<item key="updateSimilarElementsMatchStrategy" value="1"/>
 		<item key="renameGetter" value="true"/>
